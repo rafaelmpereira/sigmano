@@ -9,7 +9,6 @@ function App() {
       <header className="App-header">
       <Home />
 	  <Form />
-	  <Result />
       </header>
 
     </div>

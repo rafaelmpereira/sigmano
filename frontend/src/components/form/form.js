@@ -5,31 +5,39 @@ class Form extends Component {
   state = {
     string: ''
   };
-/* This is where the magic happens 
-*/
-handleSubmit = event => {
+  handleSend = event => {
     event.preventDefault();
-    const array = {stringArray: this.state.string}
+    const array = {value: this.state.string}
     const url = 'http://localhost:8080/array'
 	
 	axios({method: 'post',
 	url: url,
 	headers: {},
 	data: array })
-      .then(res=>{
-        console.log(res);
-        console.log(res.data);
+      .then(response=>{
+        console.log(response.data);
       })
   }
+  handleResult = event => {
+    event.preventDefault();
+    const url = 'http://localhost:8080/array'
+    
+    axios.get(url).then((response) => {
+	  console.log(response.data);
+  })
+  }
+
 handleChange = event =>{
     this.setState({ string: event.target.value});
   }
+
 render() {
     return (
       <div>
-        <form onSubmit = { this.handleSubmit }>
+        <form>
             <input type = "text" placeholder="Array" className="form-control" onChange= {this.handleChange}/>
-          <button type = "submit" className="btn btn-primary"> Testar </button>
+          <button type = "submit" onClick={this.handleSend} className="btn btn-primary"> Enviar </button>
+		  <button type = "submit" onClick={this.handleResult} className="btn btn-secondary"> Receber </button>
         </form>
     </div>
     );
