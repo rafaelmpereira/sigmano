@@ -1,7 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import Home from './components/home/home'
 import Form from './components/form/form'
+import Result from './components/result/result'
 
 function App() {
   return (
@@ -9,6 +9,7 @@ function App() {
       <header className="App-header">
       <Home />
 	  <Form />
+	  <Result />
       </header>
 
     </div>

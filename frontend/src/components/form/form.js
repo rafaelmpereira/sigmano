@@ -1,27 +1,38 @@
-import { useState } from 'react';
-import ReactDOM from 'react-dom/client';
+import React, { Component } from 'react';
+import axios from "axios"; 
 
-function Form() {
-  const [name, setName] = useState("");
-
-  const handleSubmit = (event) => {
+class Form extends Component {
+  state = {
+    string: ''
+  };
+/* This is where the magic happens 
+*/
+handleSubmit = event => {
     event.preventDefault();
+    const array = {stringArray: this.state.string}
+    const url = 'http://localhost:8080/array'
+	
+	axios({method: 'post',
+	url: url,
+	headers: {},
+	data: array })
+      .then(res=>{
+        console.log(res);
+        console.log(res.data);
+      })
   }
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        <input 
-          type="text" className="form-control"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </label>
-      <button type="submit" className="btn btn-primary">Enviar</button>
-    </form>
-  )
+handleChange = event =>{
+    this.setState({ string: event.target.value});
+  }
+render() {
+    return (
+      <div>
+        <form onSubmit = { this.handleSubmit }>
+            <input type = "text" placeholder="Array" className="form-control" onChange= {this.handleChange}/>
+          <button type = "submit" className="btn btn-primary"> Testar </button>
+        </form>
+    </div>
+    );
+  }
 }
-
-//const root = ReactDOM.createRoot(document.getElementById('root'));
-//root.render(<Form />);
 export default Form;
