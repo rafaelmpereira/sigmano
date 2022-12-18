@@ -13,29 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/array")
 public class ArrayController {
-	
-	public Boolean status = false;
-	DataValidation data = new DataValidation();
-	
-	private Boolean trocarStatus() {
-		status = true;
-		return status;
-	}
+	private DataValidation data = new DataValidation();
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	@CrossOrigin
-	public String receber(@RequestBody String response) {
-		
-		System.out.println(data.DataValidation(response));
-		
-		trocarStatus();
-		return "ok";
+	public void validar(@RequestBody String response) throws Exception {
+		data.enviarDadosMatriz(response);
+		System.out.println("Controller: "+response);
 	}
 	
 	@CrossOrigin
 	@GetMapping
-	public Boolean listar() {
-		return status;
+	public Boolean listar() throws Exception {
+		return data.validaSigmano();
 	}
 }

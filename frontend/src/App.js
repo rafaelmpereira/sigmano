@@ -5,12 +5,10 @@ import Result from './components/result/result'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="App App-header">
       <Home />
 	  <Form />
-      </header>
-
+	  
     </div>
   );
 }

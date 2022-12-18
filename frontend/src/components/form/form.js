@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from "axios"; 
-
+  
 class Form extends Component {
+
   state = {
     string: ''
   };
@@ -17,18 +18,16 @@ class Form extends Component {
       .then(response=>{
         console.log(response.data);
       })
+	  .catch(error => {alert(error.trace)})
   }
   handleResult = event => {
     event.preventDefault();
     const url = 'http://localhost:8080/array'
-    
+
     axios.get(url).then((response) => {
+	  alert("resultado sigmano: "+response.data)
 	  console.log(response.data);
   })
-  }
-  showResult =event => {
-	  event.preventDefault();
-	  
   }
 
 handleChange = event =>{
@@ -37,13 +36,14 @@ handleChange = event =>{
 
 render() {
     return (
-      <div>
-        <form>
+	<div>
+      <div className="btn">
             <input type = "text" placeholder="Array" className="form-control" onChange= {this.handleChange}/>
-          <button type = "submit" onClick={this.handleSend} className="btn btn-primary"> Enviar </button>
+	  </div>
+	  <div>
+		  <button type = "submit" onClick={this.handleSend} className="btn btn-primary"> Enviar </button>
 		  <button type = "submit" onClick={this.handleResult} className="btn btn-secondary"> Receber </button>
-        </form>
-		
+	  </div>
     </div>
     );
   }
