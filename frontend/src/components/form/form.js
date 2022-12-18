@@ -26,6 +26,10 @@ class Form extends Component {
 	  console.log(response.data);
   })
   }
+  showResult =event => {
+	  event.preventDefault();
+	  
+  }
 
 handleChange = event =>{
     this.setState({ string: event.target.value});
@@ -39,6 +43,7 @@ render() {
           <button type = "submit" onClick={this.handleSend} className="btn btn-primary"> Enviar </button>
 		  <button type = "submit" onClick={this.handleResult} className="btn btn-secondary"> Receber </button>
         </form>
+		
     </div>
     );
   }
