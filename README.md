@@ -10,4 +10,3 @@ Detect by DNA array of strings if there is a Sigmano.
 
 ### Sample test
 ![Alt text](/frontend/public/sigmano.gif?raw=true "Sample test")
-C:\projetos\sigmano\frontend\public
