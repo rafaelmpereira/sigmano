@@ -18,16 +18,17 @@ class Form extends Component {
       .then(response=>{
         console.log(response.data);
       })
-	  .catch(error => {alert(error.trace)})
+	  .catch(error => {alert("Entrada inválida.")})
   }
   handleResult = event => {
     event.preventDefault();
     const url = 'http://localhost:8080/array'
 
     axios.get(url).then((response) => {
-	  alert("resultado sigmano: "+response.data)
+	  alert(response.data == true ? response.data + " : Sigmano detectado." : response.data + " : Sigmano não detectado.")
 	  console.log(response.data);
   })
+  .catch(error => {alert("Entrada não detectada.")})
   }
 
 handleChange = event =>{

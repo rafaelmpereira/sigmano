@@ -6,9 +6,10 @@ public class DataValidation {
 	private ArrayList<ArrayList<String>> dna = null;	// lista do dna
 	
 	public void enviarDadosMatriz(String raw) throws Exception {
-		validarCaracteres(raw);
-		//String stringInput[] = raw.split(",");
-		String stringInput[] = raw.substring(10,raw.length()-2).split(",");
+		String rawString = raw.substring(10,raw.length()-2);
+		validarCaracteres(rawString);
+		String stringInput[] = rawString.split(",");
+
 		// cria arraylists de strings
 		dna = new ArrayList<ArrayList<String>>();	// lista do dna
 		// percorre o array de strings
@@ -20,29 +21,28 @@ public class DataValidation {
 			}
 			dna.add(elemento);
 		}
-		System.out.println(dna);
+		//System.out.println(dna);
 	}
-	
 	
 	private void validarCaracteres(String raw) throws Exception {
 		for (char ch : raw.toCharArray()) {
-            //Crio uma variÃ¡vel string transformando o caracter em maiÃºsculo
+			//System.out.println(raw.length());
             String caracterMaiusculo = String.valueOf(ch).toUpperCase();
             //Valido se a o caracter da String Ã© invÃ¡lido, caso seja, dou um return false e saio do mÃ©todo
-            if ((!caracterMaiusculo.equals("A"))
+            if (((!caracterMaiusculo.equals("A"))
                     && (!caracterMaiusculo.equals("T"))
                     && (!caracterMaiusculo.equals("C"))
-                    && (!caracterMaiusculo.equals("G"))) {
-            	throw new Exception("Dados enviados em formato invalido");
+                    && (!caracterMaiusculo.equals("G"))
+                    && (!caracterMaiusculo.equals(","))) || (raw.length() <= 1)) {
+            	throw new Exception("Entrada inválida.");
             }
         }
 	}
 	
-	
 	public Boolean validaSigmano() throws Exception {
 		// verificar se obj dna
 		if (dna == null) {
-			throw new Exception("Dados do array não enviados.");
+			throw new Exception("Entrada não detectada.");
 		}
 		return (validaH(dna) || validaV(dna) || validaDC(dna) || validaDD(dna) ? true : false);
 	}
@@ -144,7 +144,6 @@ public class DataValidation {
 				if ((caractereLinha1.equals(caractereLinha2))
 						&& (caractereLinha2.equals(caractereLinha3))
                         && (caractereLinha3.equals(caractereLinha4))) {
-                    System.out.println("diagonal cresc.");
                     return true;
                 }
 			}
@@ -172,7 +171,6 @@ public class DataValidation {
 				if ((caractereLinha1.equals(caractereLinha2))
 						&& (caractereLinha2.equals(caractereLinha3))
                         && (caractereLinha3.equals(caractereLinha4))) {
-                    System.out.println("diagonal decresc.");
                     return true;
                 }
 			}
