@@ -20,7 +20,6 @@ public class ArrayController {
 	@CrossOrigin
 	public void validar(@RequestBody String response) throws Exception {
 		data.enviarDadosMatriz(response);
-		System.out.println("Controller: "+response);
 	}
 	
 	@CrossOrigin

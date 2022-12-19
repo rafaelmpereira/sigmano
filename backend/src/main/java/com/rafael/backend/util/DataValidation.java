@@ -3,27 +3,27 @@ package com.rafael.backend.util;
 import java.util.ArrayList;
 
 public class DataValidation {
-	private ArrayList<ArrayList<String>> dna = null;	// lista do dna
+	// Criacao do Arraylist
+	private ArrayList<ArrayList<String>> dna = null;
 	
 	public void enviarDadosMatriz(String raw) throws Exception {
 		String rawString = raw.substring(10,raw.length()-2);
 		validarCaracteres(rawString);
 		String stringInput[] = rawString.split(",");
 
-		// cria arraylists de strings
-		dna = new ArrayList<ArrayList<String>>();	// lista do dna
-		// percorre o array de strings
+		// Criacao arraylists de strings
+		dna = new ArrayList<ArrayList<String>>();
+		// percorre o array de strings e atribui os valores
 		for (int i = 0; i < stringInput.length; i++) {
-			ArrayList<String> elemento = new ArrayList<String>();	// lista do elemento
+			ArrayList<String> elemento = new ArrayList<String>();
 			char [] cArray = stringInput[i].toCharArray();
 			for (int j = 0; j < cArray.length; j++) {
 				elemento.add(Character.toString(cArray[j]));
 			}
 			dna.add(elemento);
 		}
-		//System.out.println(dna);
 	}
-	
+	// Validacao de entrada
 	private void validarCaracteres(String raw) throws Exception {
 		for (char ch : raw.toCharArray()) {
 			//System.out.println(raw.length());
@@ -38,7 +38,7 @@ public class DataValidation {
             }
         }
 	}
-	
+	// Valida sigmano
 	public Boolean validaSigmano() throws Exception {
 		// verificar se obj dna
 		if (dna == null) {
@@ -46,8 +46,7 @@ public class DataValidation {
 		}
 		return (validaH(dna) || validaV(dna) || validaDC(dna) || validaDD(dna) ? true : false);
 	}
-		
-	// Converter string para matriz (arraylist)
+	// Conversao de string para matriz (arraylist<arraylist>)
 	public ArrayList<ArrayList<String>> dataConvert(String raw) {
 		String stringInput[] = raw.substring(10,raw.length()-2).split(",");
 		// cria arraylists de strings
@@ -102,27 +101,7 @@ public class DataValidation {
 		}
 		return false;
 	}
-	public Boolean validaD(ArrayList<ArrayList<String>> dna) {
-		Boolean vD = false;
-		for (int j = 0;  j < dna.get(0).size(); j++) {
-			int contIguais = 0;
-			String caracter = " ";
-			for (int i = 0; i < dna.size(); i++) {
-				if ((caracter.equals(dna.get(i).get(j))) || (contIguais == 0)) {
-					contIguais++;
-				}
-				if (contIguais == 4) {
-					return true;
-				} else {
-					contIguais = 1;
-				}
-				caracter = dna.get(i).get(j);
-			}
-		}
-		return false;
-	}
-	
-	// diagonal crescente
+	// Varredura diagonal crescente (left-right)
 	public Boolean validaDC(ArrayList<ArrayList<String>> dna) {
 		for (int i = 0;  i < dna.get(0).size()-1; i++) {
 			int nLinhas = dna.size()-1;
@@ -150,7 +129,7 @@ public class DataValidation {
 		}
 	return false;
 	}
-	// diagonal decrescente
+	// Varredura diagonal decrescente (right-left)
 	public Boolean validaDD(ArrayList<ArrayList<String>> dna) {
 		for (int i = 0;  i < dna.get(0).size()-1; i++) {
 			int nLinhas = dna.size()-1;
@@ -177,6 +156,4 @@ public class DataValidation {
 		}
 	return false;
 	}
-	
-// end of class	
 }
