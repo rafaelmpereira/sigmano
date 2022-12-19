@@ -1,8 +1,10 @@
-Project: Sigmano
+#Project
+Sigmano
 
-Idea: detect by DNA array of strings if there is a Sigmano.
+##Idea:
+Detect by DNA array of strings if there is a Sigmano.
 
-Languages
+##Languages:
   Backend: Java, Spring Boot
   Fornend: Javascript, React, CSS
   
