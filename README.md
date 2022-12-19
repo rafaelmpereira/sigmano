@@ -8,5 +8,5 @@ Languages
   
   
   
-
-Sample teste
+![Alt text](/frontend/public/sigmano.gif?raw=true "Sample test")
+C:\projetos\sigmano\frontend\public
